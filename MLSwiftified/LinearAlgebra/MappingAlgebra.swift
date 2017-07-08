@@ -29,7 +29,10 @@ public func -<T: NumericArithmeticType>(lhs: Matrix<T>, rhs: Matrix<T>) -> Matri
     if lhs.columnCount != rhs.columnCount || rhs.rowCount != lhs.rowCount {
         fatalError(MatrixDimError.InnerDimMisMatch.rawValue)
     }
-    return [zip(lhs.data, rhs.data).map{$0.0 - $0.1}]
+    let sub = zip(lhs.data, rhs.data).map{$0.0 - $0.1}
+    
+    
+    return Matrix.init(rows: lhs.rowCount, columns: rhs.columnCount, grid: sub)
 }
 
 //Matrix * Scalar Multiplication
@@ -160,6 +163,14 @@ public func sum<T:NumericArithmeticType>(_ value :Matrix<T>) -> T {
     return value.data.reduce(0,+)
 }
 
+public func sum<T:NumericArithmeticType>(_ value :[T]) -> T {
+    return value.reduce(0,+)
+}
+
+//Sum of whole matrix
+public func sum<T:NumericArithmeticType>(_ value :Vector<T>) -> T {
+    return value.data.reduce(0,+)
+}
 //Convert one - dimentional matrix to two
 public func convert<T:NumericArithmeticType>(Darray:Matrix<T>,column : Int )->[[T]]{
     var temp :[[T]] = []

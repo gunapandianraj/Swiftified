@@ -26,14 +26,14 @@ class MLLinearRegression<Num :NumericArithmeticType> {
     
     //Cost funtion in an linear regression is used to find the differences between actual value and predicated value
     //J(✓) = 1 Xm  h✓(x(i))   y(i) 2
-    func costFuntion(theta : Matrix<Num>)->Num{
-         let datalength = features.data.count
-         let A = features * theta;
-         var  B = A - labels
-         B = squareOf(max: B)
-         let SquaredError = sum(B)
-         let ScaleDown :Num = 2 * datalength as! Num
-         let intialError = SquaredError / ScaleDown;
+    func costFuntion(theta : Matrix<Num>,datalength : Num)->Num{
+
+                 let A = features * theta;
+                 var  B = A - labels
+                 B = squareOf(max: B)
+                 let SquaredError = sum(B)
+                 let ScaleDown = 2 * datalength
+                 let intialError = SquaredError / ScaleDown;
          return intialError
     }
     
@@ -43,14 +43,18 @@ class MLLinearRegression<Num :NumericArithmeticType> {
     func minimizeGradientDecent(theta : Matrix<Num>,iters : Int,dataLen :Num,aplha:Num,completion : matrixType<Num> ) -> Void {
         var thetas = theta
         let twoDFeatures = convert(Darray: features, column: features.columnCount)
-        let D = getColumn(column:features.columnCount - 1, twoDArray: twoDFeatures)[1]
+        let rowsf = getColumn(column:features.columnCount - 1, twoDArray: twoDFeatures)
+        let D:Matrix = Matrix.init(rows:rowsf.count , columns: 1, grid: rowsf)
         
         for _ in 0...iters{
             
             let A = features * theta
             let B = A - labels
-            let minusValue = A - B
-            let mulValue = minusValue * D
+                
+            //let minusValue = A - B
+            
+            let mulValue = zip(B, D).map{$0.0 * $0.1}
+//            let mulValue = minusValue * D
             
             let theta1 = sum(B)
             let theta2 = sum(mulValue)

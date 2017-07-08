@@ -23,8 +23,8 @@ let z: Matrix = [[1, 2], [3, 4], [5, 6]]
 let vec : Vector = [1,2,3,4,5,6,7,8]
 
 let sumMax = x + y
-let maxMul = x * y
-let maxDiv = x / y
+//let maxMul = x * y
+//let maxDiv = x / y
 
 let scalarMul = 2 * x
 let reverseScalarMul = x * 3
@@ -41,7 +41,7 @@ let column  = getColumn(column: 4, twoDArray: [[1,2,3,4,1],[56,12,45,78,89]])
 
 //Applying For loop directly in to matrix
 for value in x {
-   print(value)
+    print(value)
 }
 
 //Appling in line closure directly in to matrix
@@ -60,7 +60,10 @@ let flatM = x.flatMap{$0}
     let ml =    MLLinearRegression<Float>(xValue: res,yValue: Matrix.init(labels))
     
     let thetaval : Matrix<Float> = [[Float(0.0)],[Float(0.0)]]
-        ml.minimizeGradientDecent(theta:thetaval,iters: 1500, dataLen: Float(res.data.count), aplha: Float(0.01)){ (val) in
+    
+    let valu =   ml.costFuntion(theta: thetaval, datalength: Float(features.count))
+    
+        ml.minimizeGradientDecent(theta:thetaval,iters: 1500, dataLen: Float(features.count), aplha: Float(0.01)){ (val) in
         print(val)
         let predict1 = [[1, 13.9]] * val
         print(predict1)

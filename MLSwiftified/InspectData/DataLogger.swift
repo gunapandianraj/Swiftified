@@ -49,7 +49,7 @@ class DataLogger {
     static func addXeroParameter<T:NumericArithmeticType> (max : [[T]]) ->[[T]]{
         var temp = max
         for (ind,_) in temp.enumerated() {
-            temp[ind].append(1)
+            temp[ind].insert(1, at: 0)
         }
         return temp
     }
