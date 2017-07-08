@@ -1,12 +1,10 @@
 # Swiftified
 
-
-## Created Two Custom data types Matrix and vector using Swift Standard Library to hold M x N and N x 1 Dimentional data.These Data types are generic and act as a Array litreal 
-
-## Provided overriden operators for the custom datatype for matrix multiplication , division , addition , subraction
+Created Two Custom data types Matrix and vector using Swift Standard Library to hold M x N and N x 1 Dimentional data.These Data types are generic and act as a Array litreal.Provided overriden operators for the custom datatype for matrix multiplication , division , addition , subraction
 
 # Output
 
+``` swift
 let numberMatrix :Matrix = [[1,2,3,4,5],[2,3,4,22,33]]
 print(numberMatrix)
 
@@ -21,8 +19,6 @@ let x: Matrix = [[1,2,3],[2,3,4]]
 let y: Matrix = [[67,2,23],[32,11,4],[32,11,4]]
 let z: Matrix = [[1, 2], [3, 4], [5, 6]]
 let a: Matrix = [[1, 2], [3, 4], [5, 6]]
-
-
 
 let vec : Vector = [1,2,3,4,5,6,7,8]
 print(vec)
@@ -76,10 +72,11 @@ let mapw = x.map{$0}
 let sort = x.sorted(by: { s1, s2 in s1 > s2 } )
 let flatM = x.flatMap{$0}
 
+``` 
 
-//Try to learn from data from files which as population and reveue for a foodchain company
-//and predict revenue for a given population number
+## Try to learn from data from files which as population and reveue for a foodchain company and predict revenue for a given population number
 
+``` swift
   try? DataLogger.readCsvFile{ (value :readCsvResultType) in
     let features =  value.0
     let labels = value.1
@@ -94,3 +91,4 @@ let flatM = x.flatMap{$0}
     }
 }
 
+```
